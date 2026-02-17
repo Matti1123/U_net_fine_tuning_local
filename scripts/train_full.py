@@ -25,6 +25,11 @@ print("Using device:", device)
 
 dataset = PetDataset(root)
 
+# --- Nur 20% des gesamten Datasets nutzen ---
+subset_size = int(0.2 * len(dataset))
+dataset, _ = random_split(dataset, [subset_size, len(dataset) - subset_size])
+
+# --- Danach 80/20 Train/Val Split innerhalb der 20% ---
 train_size = int(0.8 * len(dataset))
 val_size = len(dataset) - train_size
 
